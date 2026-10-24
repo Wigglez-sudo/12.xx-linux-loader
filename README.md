@@ -1,5 +1,7 @@
 Thanks to https://github.com/rmuxnet for the clean up and pull :)
 
+Discord: https://discord.gg/f8YgEXS5Z
+
 https://github.com/ps5-linux/ps5-linux-loader/pull/69
 
 https://github.com/ps5-linux/ps5-linux-loader/

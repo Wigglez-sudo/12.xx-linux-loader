@@ -4,7 +4,9 @@ Boot Linux on a PS5 that's on firmware 12.xx.
 
 You run one file on the console. It sets the system up, the console goes to rest mode, and it wakes into Linux.
 
-Your PS5 firmware isn't modified. The loader only reads the console — the only things it writes go on the USB drive's boot partition: a log (from the 12.xx-only build) and, on a Pro, the GPU firmware.
+Your PS5's firmware isn't modified and nothing is flashed — a reboot puts everything back the way it was. While it runs, the loader does patch the running system in memory: that's how it prepares the handoff, and it's gone on the next boot.
+
+The files it writes are diagnostic: a log from the 12.xx-only build, written to the USB drive and to `/data` on the console so it survives a crash, and on a Pro the GPU firmware on the USB boot partition.
 
 Updating Linux on a PS5 isn't the usual path. The images ship each new version as a bundle on their GitHub releases page, run on the console — Bazzite Deck's bundle brings its own `update.sh`, for example. Follow the release notes of whichever image you use rather than the normal Bazzite update route.
 

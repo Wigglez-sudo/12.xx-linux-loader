@@ -34,7 +34,7 @@ The main loader comes from the **ps5-linux** project and handles everything from
 | 12.20 | ✅ confirmed | — no dump yet |
 | 12.40 | ✅ confirmed | ✅ confirmed working — Bazzite |
 | 12.60 | ✅ confirmed | ✅ confirmed working — Bazzite |
-| 12.70 | ✅ confirmed | ✅ confirmed working |
+| 12.70 | ✅ confirmed | ✅ confirmed working — Bazzite |
 
 ---
 

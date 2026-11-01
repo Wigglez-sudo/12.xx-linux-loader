@@ -103,3 +103,4 @@ Every 12.xx offset in here came from a tester's console dump. None of it exists 
 Built on the work of https://github.com/ps5-linux/ps5-linux-loader (and https://github.com/ps5-linux/ps5-linux-loader/pull/69), with thanks to rmux for the clean-up.
 
 **Discord:** https://discord.gg/f8YgEXS5Z
+**Rmux Guide** https://guide.rmux.eu/

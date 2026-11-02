@@ -98,7 +98,7 @@ Every 12.xx offset in here came from a tester's console dump. None of it exists 
 
 **Phat / Slim:** Ben3Code, Jawshr, Inkredible (12.70) · Shortykun (12.20) · Cupido (12.40) · MagmaEye (12.60) · 4killerbeast, Rokkun (12.00) · Darks, frandizzle_ (12.02)
 
-**PS5 Pro:** solidpsycho (12.00) · boykopovar (12.02) · Anon (12.40) · Marlon (12.60) · H1Vltg3 (12.70)
+**PS5 Pro:** solidpsycho (12.00) · boykopovar (12.02) · mclariechanrie (12.20) · Anon (12.40) · Marlon (12.60) · H1Vltg3 (12.70)
 
 Built on the work of https://github.com/ps5-linux/ps5-linux-loader (and https://github.com/ps5-linux/ps5-linux-loader/pull/69), with thanks to rmux for the clean-up.
 

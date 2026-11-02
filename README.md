@@ -6,7 +6,7 @@ You run one file on the console. It sets the system up, the console goes to rest
 
 Your PS5's firmware isn't modified and nothing is flashed — a reboot puts everything back the way it was. While it runs, the loader does patch the running system in memory: that's how it prepares the handoff, and it's gone on the next boot.
 
-The files it writes are diagnostic: a log from the 12.xx-only build, written to the USB drive and to `/data` on the console so it survives a crash.
+The files it writes are diagnostic: a log, written to the USB drive and to `/data` on the console so it survives a crash.
 
 Updating Linux on a PS5 isn't the usual path. The images ship each new version as a bundle on their GitHub releases page, run on the console — Bazzite Deck's bundle brings its own `update.sh`, for example. Follow the release notes of whichever image you use rather than the normal Bazzite update route.
 
@@ -14,12 +14,13 @@ Updating Linux on a PS5 isn't the usual path. The images ship each new version a
 
 ## Which file do I need?
 
-| Your console | File | Notes |
-|---|---|---|
-| PS5 (Phat) or PS5 Slim | `PS5-linux-loader-aio-3xx-13xx` | The main loader. **Use this.** |
-| PS5 or Slim, if that gives trouble | `ps5-linux-loader-12xx-ONLY-aio.elf` | Fallback for 12.xx only — and there shouldn't be a need |
+| Your console | File |
+|---|---|
+| PS5 (Phat) or PS5 Slim | `ps5-linux-loader-12xx-ONLY-aio.elf` |
 
-The main loader comes from the **ps5-linux** project and handles everything from 3.00 to 13.60 in one file — 12.xx is simply what this repo is about. The 12.xx-only build is ours: it's the fallback if the main one misbehaves on your console, and it writes a log you can send me.
+That one file is the loader. It's built here from our own 12.xx offsets, with extra sanity checks, and it writes a log to the USB drive's boot partition so a failure can be diagnosed instead of guessed at.
+
+If your console is on a firmware outside 12.xx, this build refuses it by design — upstream's **ps5-linux** project (https://github.com/ps5-linux/ps5-linux-loader) builds a loader that covers more.
 
 This repo is for a PS5 (Phat) or PS5 Slim. There's no build here for a PS5 Pro.
 
@@ -64,9 +65,9 @@ That's it. Nothing to type, nothing to configure.
 
 ## If it doesn't boot
 
-**"File bzImage not found"** — the drive wasn't ready when the loader looked. The 12.xx-only build waits and retries for a while; the main loader doesn't, it gives up at once. Either way: power off, move the drive to a different USB port, and run it again. An SSD in an enclosure makes this much less likely.
+**"File bzImage not found"** — the drive wasn't ready when the loader looked. This build waits and retries for a while, but if the drive never turns up: power off, move the drive to a different USB port, and run it again. An SSD in an enclosure makes this much less likely.
 
-**It detects the drive, then nothing happens** — the 12.xx-only build writes `ps5lin_probe.log` to the boot partition, adding to it each run so the whole history is kept. The main loader doesn't write a log at all. If you're chasing a problem, run the 12.xx-only build so there's something to send me.
+**It detects the drive, then nothing happens** — this build writes `ps5lin_probe.log` to the boot partition, adding to it each run so the whole history is kept. That log is what a failure gets diagnosed from, so send it if you're stuck.
 
 **It sleeps and never wakes into Linux** — that's usually the image or the drive, not the loader. Check `cmdline.txt` on the boot partition points at the right partition (a `root=PARTUUID=…` that matches your drive is the reliable way).
 
@@ -74,7 +75,7 @@ That's it. Nothing to type, nothing to configure.
 
 ## Good to know
 
-- **The 12.xx-only build refuses anything outside 12.xx.** The main loader covers 3.00 to 13.60.
+- **This build refuses anything outside 12.xx.**
 - **Your firmware isn't modified** by running this.
 - This is a loader, not an exploit. You still need your console jailbroken first.
 

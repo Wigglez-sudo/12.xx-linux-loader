@@ -19,7 +19,7 @@ Updating Linux on a PS5 isn't the usual path. The images ship each new version a
 | PS5 (Phat) or PS5 Slim | `PS5-linux-loader-aio-3xx-13xx` | The main loader. **Use this.** |
 | PS5 or Slim, if that gives trouble | `ps5-linux-loader-12xx-ONLY-aio.elf` | Fallback for 12.xx only — and there shouldn't be a need |
 | PS5 Pro | `Linux-loader-pro-aio.elf` | One file, works on every supported Pro firmware |
-| PS5 Pro, single firmware | `ps5-linux-loader-1200/1202/1240/1260/1270-pro.elf` | Same code as the Pro AIO, locked to one firmware |
+| PS5 Pro, single firmware | `ps5-linux-loader-1200/1202/1220/1240/1260/1270-pro.elf` | Same code as the Pro AIO, locked to one firmware |
 
 Use the Pro build on a Pro and a normal build on a Phat or Slim. The Pro builds check the console and refuse anything that isn't a Pro, rather than doing something half right.
 
@@ -33,7 +33,7 @@ The main loader comes from the **ps5-linux** project and handles everything from
 |---|---|---|
 | 12.00 | ✅ confirmed | ✅ confirmed working — Bazzite |
 | 12.02 | ✅ confirmed | ✅ confirmed working — Bazzite |
-| 12.20 | ✅ confirmed | — no dump yet |
+| 12.20 | ✅ confirmed | ✅ confirmed working — Bazzite |
 | 12.40 | ✅ confirmed | ✅ confirmed working — Bazzite |
 | 12.60 | ✅ confirmed | ✅ confirmed working — Bazzite |
 | 12.70 | ✅ confirmed | ✅ confirmed working — Bazzite |
@@ -79,7 +79,7 @@ That's it. Nothing to type, nothing to configure.
 - The Pro build writes the console's GPU firmware — eight `viola_*.bin` files — to `lib/firmware/amdgpu/` on the boot partition.
 - Images that already support the Pro — [Bazzite Deck](https://github.com/VivaLaVent/ps5-bazzite-deck) for example — pick those files up automatically at boot.
 - If your image doesn't, the GPU firmware has to be added to the initrd yourself, otherwise the GPU won't come up properly.
-- 12.20 on a Pro isn't supported yet. Nobody has sent a dump for it.
+- 12.20 on a Pro uses the same tables as 12.40, and is confirmed working on Bazzite.
 
 ---
 

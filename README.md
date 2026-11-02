@@ -49,7 +49,7 @@ This repo is for a PS5 (Phat) or PS5 Slim. There's no build here for a PS5 Pro.
 
 If you need an image, these work with this loader:
 
-- **Bazzite Deck** (VivaLaVent) — https://github.com/VivaLaVent/ps5-bazzite-deck — **highly recommended.** Steam Gaming Mode
+- **Bazzite Deck** (VivaLaVent) — https://github.com/VivaLaVent/ps5-bazzite-deck **Latest** https://github.com/VivaLaVent/ps5-bazzite-deck/releases/tag/v2.1.0 — **highly recommended.** Steam Gaming Mode
 - **ps5-linux** — https://github.com/ps5-linux/ps5-linux-image/releases — plain Linux, good for testing and tinkering
 
 ---

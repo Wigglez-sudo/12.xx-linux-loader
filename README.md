@@ -6,7 +6,7 @@ You run one file on the console. It sets the system up, the console goes to rest
 
 Your PS5's firmware isn't modified and nothing is flashed — a reboot puts everything back the way it was. While it runs, the loader does patch the running system in memory: that's how it prepares the handoff, and it's gone on the next boot.
 
-The files it writes are diagnostic: a log from the 12.xx-only build, written to the USB drive and to `/data` on the console so it survives a crash, and on a Pro the GPU firmware on the USB boot partition.
+The files it writes are diagnostic: a log from the 12.xx-only build, written to the USB drive and to `/data` on the console so it survives a crash.
 
 Updating Linux on a PS5 isn't the usual path. The images ship each new version as a bundle on their GitHub releases page, run on the console — Bazzite Deck's bundle brings its own `update.sh`, for example. Follow the release notes of whichever image you use rather than the normal Bazzite update route.
 
@@ -18,25 +18,23 @@ Updating Linux on a PS5 isn't the usual path. The images ship each new version a
 |---|---|---|
 | PS5 (Phat) or PS5 Slim | `PS5-linux-loader-aio-3xx-13xx` | The main loader. **Use this.** |
 | PS5 or Slim, if that gives trouble | `ps5-linux-loader-12xx-ONLY-aio.elf` | Fallback for 12.xx only — and there shouldn't be a need |
-| PS5 Pro | `Linux-loader-pro-aio.elf` | One file, works on every supported Pro firmware |
-| PS5 Pro, single firmware | `ps5-linux-loader-1200/1202/1220/1240/1260/1270-pro.elf` | Same code as the Pro AIO, locked to one firmware |
-
-Use the Pro build on a Pro and a normal build on a Phat or Slim. The Pro builds check the console and refuse anything that isn't a Pro, rather than doing something half right.
 
 The main loader comes from the **ps5-linux** project and handles everything from 3.00 to 13.60 in one file — 12.xx is simply what this repo is about. The 12.xx-only build is ours: it's the fallback if the main one misbehaves on your console, and it writes a log you can send me.
+
+This repo is for a PS5 (Phat) or PS5 Slim. There's no build here for a PS5 Pro.
 
 ---
 
 ## Firmware support
 
-| Firmware | PS5 / Slim | PS5 Pro |
-|---|---|---|
-| 12.00 | ✅ confirmed | ✅ confirmed working — Bazzite |
-| 12.02 | ✅ confirmed | ✅ confirmed working — Bazzite |
-| 12.20 | ✅ confirmed | ✅ confirmed working — Bazzite |
-| 12.40 | ✅ confirmed | ✅ confirmed working — Bazzite |
-| 12.60 | ✅ confirmed | ✅ confirmed working — Bazzite |
-| 12.70 | ✅ confirmed | ✅ confirmed working — Bazzite |
+| Firmware | PS5 / Slim |
+|---|---|
+| 12.00 | ✅ confirmed |
+| 12.02 | ✅ confirmed |
+| 12.20 | ✅ confirmed |
+| 12.40 | ✅ confirmed |
+| 12.60 | ✅ confirmed |
+| 12.70 | ✅ confirmed |
 
 ---
 
@@ -48,7 +46,7 @@ The main loader comes from the **ps5-linux** project and handles everything from
 
 If you need an image, these work with this loader:
 
-- **Bazzite Deck** (VivaLaVent) — https://github.com/VivaLaVent/ps5-bazzite-deck — **highly recommended.** Steam Gaming Mode, and on a Pro it takes the GPU firmware this loader dumps with no extra steps
+- **Bazzite Deck** (VivaLaVent) — https://github.com/VivaLaVent/ps5-bazzite-deck — **highly recommended.** Steam Gaming Mode
 - **ps5-linux** — https://github.com/ps5-linux/ps5-linux-image/releases — plain Linux, good for testing and tinkering
 
 ---
@@ -74,18 +72,8 @@ That's it. Nothing to type, nothing to configure.
 
 ---
 
-## PS5 Pro notes
-
-- The Pro build writes the console's GPU firmware — eight `viola_*.bin` files — to `lib/firmware/amdgpu/` on the boot partition.
-- Images that already support the Pro — [Bazzite Deck](https://github.com/VivaLaVent/ps5-bazzite-deck) for example — pick those files up automatically at boot.
-- If your image doesn't, the GPU firmware has to be added to the initrd yourself, otherwise the GPU won't come up properly.
-- 12.20 on a Pro uses the same tables as 12.40, and is confirmed working on Bazzite.
-
----
-
 ## Good to know
 
-- **Pro builds check the console** and refuse a Phat or Slim rather than run with the wrong tables. The Phat/Slim builds don't do that check — run one on a Pro and it won't refuse, but you'll be missing the Pro GPU firmware, so use the Pro build on a Pro.
 - **The 12.xx-only build refuses anything outside 12.xx.** The main loader covers 3.00 to 13.60.
 - **Your firmware isn't modified** by running this.
 - This is a loader, not an exploit. You still need your console jailbroken first.
@@ -97,8 +85,6 @@ That's it. Nothing to type, nothing to configure.
 Every 12.xx offset in here came from a tester's console dump. None of it exists without them.
 
 **Phat / Slim:** Ben3Code, Jawshr, Inkredible (12.70) · Shortykun (12.20) · Cupido (12.40) · MagmaEye (12.60) · 4killerbeast, Rokkun (12.00) · Darks, frandizzle_ (12.02)
-
-**PS5 Pro:** solidpsycho (12.00) · boykopovar (12.02) · mclariechanrie (12.20) · Anon (12.40) · Marlon (12.60) · H1Vltg3 (12.70)
 
 Built on the work of https://github.com/ps5-linux/ps5-linux-loader (and https://github.com/ps5-linux/ps5-linux-loader/pull/69), with thanks to rmux for the clean-up.
 

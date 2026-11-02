@@ -37,6 +37,8 @@ This repo is for a PS5 (Phat) or PS5 Slim. There's no build here for a PS5 Pro.
 | 12.60 | ✅ confirmed |
 | 12.70 | ✅ confirmed |
 
+**Pro console support and source** https://github.com/Wigglez-sudo/12.xx-linux-loader-pro-beta/
+
 ---
 
 ## What you need
